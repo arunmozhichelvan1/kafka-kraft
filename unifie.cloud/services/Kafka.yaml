@@ -1,0 +1,589 @@
+name: Kafka
+uiType: helm
+helmRepositoryName: confluentinc
+helmRepositoryURL: https://packages.confluent.io/helm
+helmRepositoryChartName: confluent-for-kubernetes
+rules:
+  - varName: affinity
+    varValueType: object
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: '{}'
+    refToSpecVar: ''
+    UIVarTitle: affinity
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: clusterRole
+    varValueType: object
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: '{"openshift":true}'
+    refToSpecVar: ''
+    UIVarTitle: clusterRole
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: clusterRole.openshift
+    varValueType: boolean
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 'true'
+    refToSpecVar: ''
+    UIVarTitle: clusterRole.openshift
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: containerSecurity
+    varValueType: object
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: '{"enabled":false,"securityContext":{}}'
+    refToSpecVar: ''
+    UIVarTitle: containerSecurity
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: containerSecurity.enabled
+    varValueType: boolean
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 'false'
+    refToSpecVar: ''
+    UIVarTitle: containerSecurity.enabled
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: customEnvVars
+    varValueType: array
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: '[]'
+    refToSpecVar: ''
+    UIVarTitle: customEnvVars
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: debug
+    varValueType: boolean
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 'false'
+    refToSpecVar: ''
+    UIVarTitle: debug
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: enableCMFDay2Ops
+    varValueType: boolean
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 'true'
+    refToSpecVar: ''
+    UIVarTitle: enableCMFDay2Ops
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: fipsmode
+    varValueType: boolean
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 'false'
+    refToSpecVar: ''
+    UIVarTitle: fipsmode
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: image
+    varValueType: object
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: >-
+      {"registry":"docker.io","repository":"confluentinc/confluent-operator","pullPolicy":"IfNotPresent","tag":"0.1263.8"}
+    refToSpecVar: ''
+    UIVarTitle: image
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: image.pullPolicy
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: IfNotPresent
+    refToSpecVar: ''
+    UIVarTitle: image.pullPolicy
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: image.registry
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: docker.io
+    refToSpecVar: ''
+    UIVarTitle: image.registry
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: image.repository
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: confluentinc/confluent-operator
+    refToSpecVar: ''
+    UIVarTitle: image.repository
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: image.tag
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 0.1263.8
+    refToSpecVar: ''
+    UIVarTitle: image.tag
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: imagePullSecretRef
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: confluent-registry
+    refToSpecVar: ''
+    UIVarTitle: imagePullSecretRef
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: kRaftEnabled
+    varValueType: boolean
+    varValueSrcType: src_deployment_ui
+    hardcodedDefaultValue: 'false'
+    refToSpecVar: ''
+    UIVarTitle: kRaftEnabled
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: boolean
+  - varName: license
+    varValueType: object
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: '{"secretRef":"","directoryPathInContainer":""}'
+    refToSpecVar: ''
+    UIVarTitle: license
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: license.directoryPathInContainer
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: ''
+    refToSpecVar: ''
+    UIVarTitle: license.directoryPathInContainer
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: license.secretRef
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: ''
+    refToSpecVar: ''
+    UIVarTitle: license.secretRef
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: licenseKey
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: ''
+    refToSpecVar: ''
+    UIVarTitle: licenseKey
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: licenseSecretRef
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: ''
+    refToSpecVar: ''
+    UIVarTitle: licenseSecretRef
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: managedCerts
+    varValueType: object
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: >-
+      {"enabled":false,"caCertificate":{"secretRef":"","directoryPathInContainer":""},"certDurationInDays":60,"renewBeforeInDays":30,"sans":""}
+    refToSpecVar: ''
+    UIVarTitle: managedCerts
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: managedCerts.caCertificate.directoryPathInContainer
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: ''
+    refToSpecVar: ''
+    UIVarTitle: managedCerts.caCertificate.directoryPathInContainer
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: managedCerts.caCertificate.secretRef
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: ''
+    refToSpecVar: ''
+    UIVarTitle: managedCerts.caCertificate.secretRef
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: managedCerts.certDurationInDays
+    varValueType: number
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: '60'
+    refToSpecVar: ''
+    UIVarTitle: managedCerts.certDurationInDays
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: managedCerts.enabled
+    varValueType: boolean
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 'false'
+    refToSpecVar: ''
+    UIVarTitle: managedCerts.enabled
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: managedCerts.renewBeforeInDays
+    varValueType: number
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: '30'
+    refToSpecVar: ''
+    UIVarTitle: managedCerts.renewBeforeInDays
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: managedCerts.sans
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: ''
+    refToSpecVar: ''
+    UIVarTitle: managedCerts.sans
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: mountedVolumes
+    varValueType: object
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: '{"volumes":[],"volumeMounts":[]}'
+    refToSpecVar: ''
+    UIVarTitle: mountedVolumes
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: name
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: confluent-operator
+    refToSpecVar: ''
+    UIVarTitle: name
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: namespaced
+    varValueType: boolean
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 'true'
+    refToSpecVar: ''
+    UIVarTitle: namespaced
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: namespaceList
+    varValueType: array
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: '[]'
+    refToSpecVar: ''
+    UIVarTitle: namespaceList
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: numDay2Worker
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: ''
+    refToSpecVar: ''
+    UIVarTitle: numDay2Worker
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: pod
+    varValueType: object
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: >-
+      {"annotations":{"prometheus.io/path":"/metrics","prometheus.io/port":"7778","prometheus.io/scrape":"true"},"labels":{}}
+    refToSpecVar: ''
+    UIVarTitle: pod
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: podSecurity
+    varValueType: object
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: >-
+      {"enabled":true,"securityContext":{"fsGroup":1001,"runAsUser":1001,"runAsNonRoot":true}}
+    refToSpecVar: ''
+    UIVarTitle: podSecurity
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: podSecurity.enabled
+    varValueType: boolean
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 'true'
+    refToSpecVar: ''
+    UIVarTitle: podSecurity.enabled
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: podSecurity.securityContext.fsGroup
+    varValueType: number
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: '1001'
+    refToSpecVar: ''
+    UIVarTitle: podSecurity.securityContext.fsGroup
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: podSecurity.securityContext.runAsNonRoot
+    varValueType: boolean
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 'true'
+    refToSpecVar: ''
+    UIVarTitle: podSecurity.securityContext.runAsNonRoot
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: podSecurity.securityContext.runAsUser
+    varValueType: number
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: '1001'
+    refToSpecVar: ''
+    UIVarTitle: podSecurity.securityContext.runAsUser
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: priorityClassName
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: ''
+    refToSpecVar: ''
+    UIVarTitle: priorityClassName
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: rbac
+    varValueType: boolean
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 'true'
+    refToSpecVar: ''
+    UIVarTitle: rbac
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: replicas
+    varValueType: number
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: '1'
+    refToSpecVar: ''
+    UIVarTitle: replicas
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: resources
+    varValueType: object
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: >-
+      {"limits":{"cpu":"500m","memory":"512Mi"},"requests":{"cpu":"100m","memory":"256Mi"}}
+    refToSpecVar: ''
+    UIVarTitle: resources
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: resources.limits.cpu
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 500m
+    refToSpecVar: ''
+    UIVarTitle: resources.limits.cpu
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: resources.limits.memory
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 512Mi
+    refToSpecVar: ''
+    UIVarTitle: resources.limits.memory
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: resources.requests.cpu
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 100m
+    refToSpecVar: ''
+    UIVarTitle: resources.requests.cpu
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: resources.requests.memory
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 256Mi
+    refToSpecVar: ''
+    UIVarTitle: resources.requests.memory
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: serviceAccount
+    varValueType: object
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: '{"create":true,"name":""}'
+    refToSpecVar: ''
+    UIVarTitle: serviceAccount
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: serviceAccount.create
+    varValueType: boolean
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 'true'
+    refToSpecVar: ''
+    UIVarTitle: serviceAccount.create
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: serviceAccount.name
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: ''
+    refToSpecVar: ''
+    UIVarTitle: serviceAccount.name
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: telemetry
+    varValueType: object
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: >-
+      {"operator":{"enabled":false},"enabled":false,"proxy":{"enabled":false,"credentialRequired":false},"secretRef":"","directoryPathInContainer":""}
+    refToSpecVar: ''
+    UIVarTitle: telemetry
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: telemetry.directoryPathInContainer
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: ''
+    refToSpecVar: ''
+    UIVarTitle: telemetry.directoryPathInContainer
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: telemetry.enabled
+    varValueType: boolean
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 'false'
+    refToSpecVar: ''
+    UIVarTitle: telemetry.enabled
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: telemetry.operator.enabled
+    varValueType: boolean
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 'false'
+    refToSpecVar: ''
+    UIVarTitle: telemetry.operator.enabled
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: telemetry.proxy.credentialRequired
+    varValueType: boolean
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 'false'
+    refToSpecVar: ''
+    UIVarTitle: telemetry.proxy.credentialRequired
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: telemetry.proxy.enabled
+    varValueType: boolean
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 'false'
+    refToSpecVar: ''
+    UIVarTitle: telemetry.proxy.enabled
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: telemetry.secretRef
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: ''
+    refToSpecVar: ''
+    UIVarTitle: telemetry.secretRef
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: terminationGracePeriodSeconds
+    varValueType: number
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: '30'
+    refToSpecVar: ''
+    UIVarTitle: terminationGracePeriodSeconds
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: tolerations
+    varValueType: array
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: '[]'
+    refToSpecVar: ''
+    UIVarTitle: tolerations
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: webhooks
+    varValueType: object
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: >-
+      {"enabled":false,"port":8443,"tls":{"secretRef":"","directoryPathInContainer":""}}
+    refToSpecVar: ''
+    UIVarTitle: webhooks
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: webhooks.enabled
+    varValueType: boolean
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: 'false'
+    refToSpecVar: ''
+    UIVarTitle: webhooks.enabled
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: webhooks.port
+    varValueType: number
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: '8443'
+    refToSpecVar: ''
+    UIVarTitle: webhooks.port
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: webhooks.tls.directoryPathInContainer
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: ''
+    refToSpecVar: ''
+    UIVarTitle: webhooks.tls.directoryPathInContainer
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
+  - varName: webhooks.tls.secretRef
+    varValueType: string
+    varValueSrcType: src_hardcoded
+    hardcodedDefaultValue: ''
+    refToSpecVar: ''
+    UIVarTitle: webhooks.tls.secretRef
+    varApplyMethod: method_replace
+    UIVarValidationRules: []
+    UIVarInputType: string
