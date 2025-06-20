@@ -54,7 +54,7 @@ spec:
   kafkaClusterRef:
     name: kafka
   kafkaRest:
-    endpoint: http://kafka.confluent.{{ .Release.Namespace }}.cluster.local:8090
+    endpoint: http://kafka.{{ .Release.Namespace }}.svc.cluster.local:8090
 ---
 apiVersion: platform.confluent.io/v1beta1
 kind: ControlCenter
@@ -75,7 +75,7 @@ spec:
       secretRef: c3-basic-auth
   dependencies:
     kafka:
-      bootstrapEndpoint: kafka.confluent.svc.cluster.local:9071
+      bootstrapEndpoint: kafka.{{ .Release.Namespace }}.svc.cluster.local:9071
       authentication:
         type: plain
         jaasConfig:
