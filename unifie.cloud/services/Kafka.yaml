@@ -239,7 +239,7 @@ rules:
     UIVarTitle: managedCerts.enabled
     varApplyMethod: method_replace
     UIVarValidationRules: []
-    UIVarInputType: string
+    UIVarInputType: boolean
   - varName: managedCerts.renewBeforeInDays
     varValueType: number
     varValueSrcType: src_hardcoded
