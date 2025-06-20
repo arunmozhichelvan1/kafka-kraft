@@ -1,11 +1,12 @@
 apiVersion: v1
-kind: Secret
+kind: ConfigMap
 metadata:
   name: kafka-client-config
-  # namespace: confluent
-type: Opaque
 data:
-  kafka.properties: Ym9vdHN0cmFwLnNlcnZlcnM9a2Fma2EuY29uZmx1ZW50LnN2Yy5jbHVzdGVyLmxvY2FsOjkwNzEKc2VjdXJpdHkucHJvdG9jb2w9UExBSU5URVhU
+  kafka.properties: |
+    bootstrap.servers=kafka.{{ .Release.Namespace }}.svc.cluster.local:9071
+    security.protocol=PLAINTEXT
+
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -46,9 +47,10 @@ spec:
             memory: 512Mi # 768Mi
             cpu: 500m # 1000m
       volumes:
-        - name: kafka-properties # Create secret with name `kafka-client-config` with client configurations
-          secret:
-            secretName: kafka-client-config
+        - name: kafka-properties
+          configMap:
+            name: kafka-client-config  
+
 ---
 apiVersion: v1
 kind: Service
