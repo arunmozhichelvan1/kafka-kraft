@@ -1,0 +1,11 @@
+showVerionsTab: false
+showEnvVarsTab: true
+useRawYaml: false
+allowAutoApplyLimits: false
+name: Kafka-Confluent-CFK
+title: Kafka-Confluent-CFK
+logo: null
+tags: []
+description: Kafka-Confluent-CFK
+oneDeploymentPerCluster: false
+notAllowRemoveNamespace: false
