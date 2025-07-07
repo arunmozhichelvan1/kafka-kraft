@@ -1,0 +1,68 @@
+# --- Secret for Kafka UI credentials ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kafka-ui-secret
+  namespace: {{ .Values.namespace }}
+type: Opaque
+stringData:
+  config.yml: |
+    kafka:
+      clusters:
+        - name: local
+          bootstrapServers: kafka.{{ .Values.namespace }}.svc.cluster.local:9092
+          properties:
+            security.protocol: SASL_PLAINTEXT
+            sasl.mechanism: PLAIN
+            sasl.jaas.config: >
+              org.apache.kafka.common.security.plain.PlainLoginModule required
+              username="{{ .Values.kafkaAuth.username }}"
+              password="{{ .Values.kafkaAuth.password }}";
+
+---
+# --- Kafka UI Deployment ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-ui
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-ui
+  template:
+    metadata:
+      labels:
+        app: kafka-ui
+    spec:
+      containers:
+        - name: kafka-ui
+          image: provectuslabs/kafka-ui:latest
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: config
+              mountPath: /etc/kafkaui
+              readOnly: true
+          env:
+            - name: KAFKA_CLUSTERS_CONFIG
+              value: /etc/kafkaui/config.yml
+      volumes:
+        - name: config
+          secret:
+            secretName: kafka-ui-secret
+
+---
+# --- Kafka UI Service ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-ui
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: kafka-ui
+  ports:
+    - port: 80
+      targetPort: 8080
