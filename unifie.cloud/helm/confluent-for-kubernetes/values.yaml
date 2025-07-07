@@ -286,5 +286,17 @@ kafkaAuth:
   username: kafka
   password: kafka-secret
 
+
+kafkaUi:
+  image: provectuslabs/kafka-ui:v0.7.1
+  auth:
+    username: admin
+    password: adminpass
+
 kafka:
-  bootstrapServers: kafka.{{ .Values.namespace }}.svc.cluster.local:9092
+  clusterName: confluent
+  bootstrapServers: kafka.dp-1-867.svc.cluster.local:9092
+  securityProtocol: SASL_PLAINTEXT
+  saslMechanism: PLAIN
+  saslUsername: kafka
+  saslPassword: kafka-secret
