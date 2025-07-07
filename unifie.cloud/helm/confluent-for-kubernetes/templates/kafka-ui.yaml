@@ -88,10 +88,10 @@ spec:
             - name: KAFKA_CLUSTERS_0_PROPERTIES_SASL_MECHANISM
               value: "PLAIN"
             - name: KAFKA_CLUSTERS_0_PROPERTIES_SASL_JAAS_CONFIG
-              valueFrom:
-                secretKeyRef:
-                  name: kafka-ui-sasl
-                  key: sasl_jaas_config
+              value: >
+                org.apache.kafka.common.security.plain.PlainLoginModule required
+                username="kafka"
+                password="kafka-secret";
           livenessProbe:
             httpGet:
               path: /actuator/health
