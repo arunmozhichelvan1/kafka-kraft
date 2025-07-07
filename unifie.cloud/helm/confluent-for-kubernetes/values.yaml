@@ -280,7 +280,7 @@ mountedVolumes:
 ##     value: "http://proxy.example.com:3128"
 customEnvVars: []
 
-namespace: confluent
+namespace: dp-1-867
 
 kafkaAuth:
   username: kafka
@@ -294,9 +294,5 @@ kafkaUi:
     password: adminpass
 
 kafka:
-  clusterName: confluent
-  bootstrapServers: kafka.dp-1-867.svc.cluster.local:9092
-  securityProtocol: SASL_PLAINTEXT
-  saslMechanism: PLAIN
   saslUsername: kafka
   saslPassword: kafka-secret

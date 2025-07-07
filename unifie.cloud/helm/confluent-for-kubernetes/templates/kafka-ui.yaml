@@ -56,14 +56,14 @@ spec:
                   key: password
 
             - name: KAFKA_CLUSTERS_0_NAME
-              value: {{ .Values.kafka.clusterName }}
+              value: "local"
             - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
-              value: {{ .Values.kafka.bootstrapServers }}
+              value: "kafka:9092"
 
             - name: KAFKA_CLUSTERS_0_PROPERTIES_SECURITY_PROTOCOL
-              value: {{ .Values.kafka.securityProtocol }}
+              value: "SASL_PLAINTEXT"
             - name: KAFKA_CLUSTERS_0_PROPERTIES_SASL_MECHANISM
-              value: {{ .Values.kafka.saslMechanism }}
+              value: "PLAIN"
             - name: KAFKA_CLUSTERS_0_PROPERTIES_SASL_JAAS_CONFIG
               valueFrom:
                 secretKeyRef:
