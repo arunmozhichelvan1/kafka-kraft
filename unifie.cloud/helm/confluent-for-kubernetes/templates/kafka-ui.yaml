@@ -7,7 +7,6 @@ type: Opaque
 stringData:
   username: "{{ .Values.kafkaUi.auth.username }}"
   password: "{{ .Values.kafkaUi.auth.password }}"
-
 ---
 apiVersion: v1
 kind: Secret
@@ -18,14 +17,14 @@ type: Opaque
 stringData:
   sasl_jaas_config: |
     org.apache.kafka.common.security.plain.PlainLoginModule required \
-    username="{{ .Values.kafka.saslUsername }}" \
-    password="{{ .Values.kafka.saslPassword }}";
+    username="{{ .Values.kafkaAuth.username }}" \
+    password="{{ .Values.kafkaAuth.password }}";
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: kafka-ui
-  namespace: confluent
+  namespace: {{ .Values.namespace }}
   labels:
     app.kubernetes.io/name: kafka-ui
 spec:
@@ -42,7 +41,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kafka-ui
-  namespace: confluent
+  namespace: {{ .Values.namespace }}
   labels:
     app.kubernetes.io/name: kafka-ui
 spec:
@@ -89,10 +88,10 @@ spec:
             - name: KAFKA_CLUSTERS_0_PROPERTIES_SASL_MECHANISM
               value: "PLAIN"
             - name: KAFKA_CLUSTERS_0_PROPERTIES_SASL_JAAS_CONFIG
-              value: >
-                org.apache.kafka.common.security.plain.PlainLoginModule required
-                username="kafka"
-                password="kafka-secret";
+              valueFrom:
+                secretKeyRef:
+                  name: kafka-ui-sasl
+                  key: sasl_jaas_config
           livenessProbe:
             httpGet:
               path: /actuator/health
