@@ -2,23 +2,24 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: kafka-ui-auth
-  namespace: confluent
+  namespace: {{ .Values.namespace }}
 type: Opaque
 stringData:
-  username: "admin"
-  password: "adminpass"
+  username: "{{ .Values.kafkaUi.auth.username }}"
+  password: "{{ .Values.kafkaUi.auth.password }}"
+
 ---
 apiVersion: v1
 kind: Secret
 metadata:
   name: kafka-ui-sasl
-  namespace: confluent
+  namespace: {{ .Values.namespace }}
 type: Opaque
 stringData:
   sasl_jaas_config: |
     org.apache.kafka.common.security.plain.PlainLoginModule required \
-    username="kafka" \
-    password="kafka-secret";
+    username="{{ .Values.kafka.saslUsername }}" \
+    password="{{ .Values.kafka.saslPassword }}";
 ---
 apiVersion: v1
 kind: Service
