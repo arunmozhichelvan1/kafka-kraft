@@ -46,6 +46,26 @@ spec:
 
   configOverrides:
     server:
+      - auto.create.topics.enable=false
+      - auto.leader.rebalance.enable=true
+      - confluent.support.metrics.enable=false
+      - delete.topic.enable=true
+      - log.retention.check.interval.ms=300000
+      - log.retention.hours=168
+      - log.segment.bytes=1073741824
+      - num.io.threads=8
+      - num.network.threads=3
+      - num.partitions=2
+      - num.recovery.threads.per.data.dir=2
+      - offsets.retention.minutes=1440000
+      - offsets.topic.replication.factor=1
+      - transaction.state.log.replication.factor=1
+      - transaction.state.log.min.isr=1
+      - socket.receive.buffer.bytes=102400
+      - socket.request.max.bytes=104857600
+      - socket.send.buffer.bytes=102400
+      - session.timeout.ms=60000
+      - fetch.max.wait.ms=70000
       - listener.name.controller.plain.sasl.jaas.config=${file:/mnt/secrets/credential-plain/plain-jaas.conf:sasl.jaas.config}
       - authorizer.class.name=org.apache.kafka.metadata.authorizer.StandardAuthorizer
       - allow.everyone.if.no.acl.found=true
