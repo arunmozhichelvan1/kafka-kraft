@@ -279,3 +279,8 @@ mountedVolumes:
 ##   - name: HTTPS_PROXY
 ##     value: "http://proxy.example.com:3128"
 customEnvVars: []
+
+
+kafkaAuth:
+  username: kafka
+  password: kafka-secret
