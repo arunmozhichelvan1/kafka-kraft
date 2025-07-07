@@ -15,10 +15,9 @@ metadata:
   namespace: {{ .Values.namespace }}
 type: Opaque
 stringData:
-  sasl_jaas_config: |
-    org.apache.kafka.common.security.plain.PlainLoginModule required \
-    username="{{ .Values.kafkaAuth.username }}" \
-    password="{{ .Values.kafkaAuth.password }}";
+  sasl_jaas_config: >-
+    org.apache.kafka.common.security.plain.PlainLoginModule required username="{{ .Values.kafkaAuth.username }}" password="{{ .Values.kafkaAuth.password }}";
+
 ---
 apiVersion: v1
 kind: Service
