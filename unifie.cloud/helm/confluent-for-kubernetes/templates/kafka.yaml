@@ -48,7 +48,6 @@ spec:
     server:
       - auto.create.topics.enable=false
       - auto.leader.rebalance.enable=true
-      - confluent.support.metrics.enable=false
       - delete.topic.enable=true
       - log.retention.check.interval.ms=300000
       - log.retention.hours=168
